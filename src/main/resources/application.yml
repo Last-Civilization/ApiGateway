@@ -1,0 +1,23 @@
+spring:
+  config:
+    import: optional:configserver:http://localhost:8888/
+  cloud:
+    config:
+      token: last-civilization
+  application:
+    name: api-gateway
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8080/auth/realms/last-civilization
+        registration:
+          keycloak-last-civilization:
+            provider: keycloak
+            client-id: Last-Civilization-Backend
+            client-secret: 4j5WiyRTV7Rkkp46Ratr3COUmEz2dfPK
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/keycloak"
+server:
+  port: 9090
